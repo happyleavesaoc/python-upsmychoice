@@ -26,6 +26,7 @@ ERROR_FIND_ATTR = {'class': 'error'}
 CSRF_FIND_TAG = 'input'
 CSRF_FIND_ATTR = {'name': 'CSRFToken'}
 VALUE_ATTR = 'value'
+ATTRIBUTION = 'Information provided by www.ups.com'
 
 
 class UPSError(Exception):
