@@ -70,9 +70,9 @@ def _login(session, cookie_path=COOKIE_PATH):
         'loc': session.auth.locale
     })
     parsed = BeautifulSoup(resp.text, HTML_PARSER)
-    error = parsed.find(ERROR_FIND_TAG, ERROR_FIND_ATTR).string
-    if error:
-        raise UPSError(error.strip())
+    error = parsed.find(ERROR_FIND_TAG, ERROR_FIND_ATTR)
+    if error and error.string:
+        raise UPSError(error.string.strip())
     _save_cookies(session.cookies, cookie_path)
 
 
