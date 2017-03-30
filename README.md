@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/upsmychoice.svg)](https://badge.fury.io/py/upsmychoice)
+
 # python-upsmychoice
 
 Python 3 API for [UPS My Choice](https://www.ups.com/mychoice/), a way to track packages.
