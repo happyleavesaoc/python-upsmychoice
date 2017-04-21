@@ -1,6 +1,9 @@
 """UPS My Choice."""
+# pylint: disable=wrong-import-position
 
 import json
+if not hasattr(json, 'JSONDecodeError'):
+    json.JSONDecodeError = ValueError
 from json.decoder import JSONDecodeError
 import os
 import pickle
