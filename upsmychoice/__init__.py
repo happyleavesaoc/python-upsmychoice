@@ -13,7 +13,7 @@ import requests
 from requests.auth import AuthBase
 
 
-LOGIN_URL = 'https://www.ups.com/one-to-one/login'
+LOGIN_URL = 'https://www.ups.com/lasso/login'
 DELIVERIES_URL = 'https://wwwapps.ups.com/mcdp'
 SERVICE_URL = 'https://wwwapps.ups.com/mcdps/service'
 COOKIE_PATH = './upsmychoice_cookies.pickle'
@@ -66,12 +66,14 @@ def _login(session, cookie_path=COOKIE_PATH):
     parsed = BeautifulSoup(resp.text, HTML_PARSER)
     csrf = parsed.find(CSRF_FIND_TAG, CSRF_FIND_ATTR).get(VALUE_ATTR)
     resp = session.post(LOGIN_URL, {
-        'uid': session.auth.username,
+        'userID': session.auth.username,
         'password': session.auth.password,
         'loginAction': 'X',
         'CSRFToken': csrf,
         'loc': session.auth.locale
     })
+    if resp.status_code == 403:
+        raise UPSError('login failure')
     parsed = BeautifulSoup(resp.text, HTML_PARSER)
     error = parsed.find(ERROR_FIND_TAG, ERROR_FIND_ATTR)
     if error and error.string:
