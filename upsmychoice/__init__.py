@@ -4,7 +4,6 @@
 import json
 if not hasattr(json, 'JSONDecodeError'):
     json.JSONDecodeError = ValueError
-from json.decoder import JSONDecodeError
 import os
 import pickle
 from bs4 import BeautifulSoup
