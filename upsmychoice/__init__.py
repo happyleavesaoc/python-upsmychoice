@@ -2,9 +2,10 @@
 # pylint: disable=wrong-import-position
 
 import json
-if not hasattr(json, 'JSONDecodeError'):
-    json.JSONDecodeError = ValueError
-from json.decoder import JSONDecodeError
+try:
+    from json.decoder import JSONDecodeError
+except ImportError:
+    JSONDecodeError = ValueError
 import os
 import pickle
 from bs4 import BeautifulSoup
