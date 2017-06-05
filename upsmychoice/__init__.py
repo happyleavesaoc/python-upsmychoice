@@ -61,7 +61,7 @@ def _parsed_date(date):
     return str(parse(date).date()) if date else ''
 
 
-def _login(session, cookie_path=COOKIE_PATH):
+def _login(session):
     """Login to UPS."""
     resp = session.get(LOGIN_URL, params=_get_params(session.auth.locale))
     parsed = BeautifulSoup(resp.text, HTML_PARSER)
@@ -79,7 +79,7 @@ def _login(session, cookie_path=COOKIE_PATH):
     error = parsed.find(ERROR_FIND_TAG, ERROR_FIND_ATTR)
     if error and error.string:
         raise UPSError(error.string.strip())
-    _save_cookies(session.cookies, cookie_path)
+    _save_cookies(session.cookies, session.auth.cookie_path)
 
 
 def authenticated(function):
@@ -159,5 +159,5 @@ def get_session(username, password, locale=DEFAULT_LOCALE,
     if os.path.exists(cookie_path):
         session.cookies = _load_cookies(cookie_path)
     else:
-        _login(session, cookie_path)
+        _login(session)
     return session
