@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='upsmychoice',
-    version='1.0.6',
+    version='1.0.7',
     description='Python 3 API for UPS My Choice, a way to track packages.',
     url='https://github.com/happyleavesaoc/python-upsmychoice/',
     license='MIT',
