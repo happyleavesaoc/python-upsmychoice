@@ -16,7 +16,7 @@ from requests.auth import AuthBase
 
 LOGIN_URL = 'https://www.ups.com/lasso/login'
 DELIVERIES_URL = 'https://wwwapps.ups.com/mcdp'
-SERVICE_URL = 'https://wwwapps.ups.com/mcdps/service'
+SERVICE_URL = 'https://wwwapps.ups.com/mcdp/service'
 COOKIE_PATH = './upsmychoice_cookies.pickle'
 UPS_JSON_PREAMBLE_SIZE = 18
 DEFAULT_LOCALE = 'en_US'
